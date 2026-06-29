@@ -1,0 +1,6 @@
+{
+  "name": "u-x-fun",
+  "scripts": {
+    "dev": "node server.js"
+  }
+}

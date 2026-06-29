@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>@fuck_up1337</title>
+<link href="favicon.webp" rel="icon" type="image/webp"/>
+<meta content="#000000" name="theme-color"/>
+<meta content="@fuck_up1337" property="og:title"/>
+<meta content="VINX" property="og:description"/>
+<meta content="https://u-x.fun/fuckup" property="og:url"/>
+<meta content="summary" name="twitter:card"/>
+<meta content="@fuck_up1337" name="twitter:title"/>
+<meta content="VINX" name="twitter:description"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#000;--text:#f5f5f7;--text-2:#797979}
+body{
+  font-family:SF Pro Display,-apple-system,BlinkMacSystemFont,sans-serif;
+  font-weight:500;
+  background:var(--bg);
+  color:var(--text);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  user-select:none;
+  -webkit-user-select:none;
+  overflow:hidden
+}
+canvas#bgCanvas{
+  position:fixed;
+  top:0;left:0;
+  width:100vw;height:100vh;
+  z-index:0;
+  pointer-events:none
+}
+.card{
+  width:420px;
+  background:#00000080;
+  border:1px solid rgba(255,255,255,.06);
+  border-radius:16px;
+  backdrop-filter:blur(24px);
+  -webkit-backdrop-filter:blur(24px);
+  padding:40px 32px;
+  position:relative;
+  z-index:1
+}
+.avatar-wrap{
+  width:80px;
+  height:80px;
+  border-radius:50%;
+  overflow:hidden;
+  margin:0 auto 16px;
+  border:2px solid rgba(255,255,255,.08)
+}
+.avatar-wrap img{width:100%;height:100%;object-fit:cover;display:block}
+.name{text-align:center;font-size:20px;font-weight:600;margin-bottom:4px}
+.tag{text-align:center;font-size:14px;color:var(--text-2);margin-bottom:28px}
+.divider{height:1px;background:rgba(255,255,255,.06);margin:24px 0}
+.section-title{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--text-2);margin-bottom:14px}
+.row{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  padding:12px 14px;
+  background:rgba(255,255,255,.03);
+  border:1px solid rgba(255,255,255,.05);
+  border-radius:10px;
+  text-decoration:none;
+  color:var(--text);
+  transition:background .2s, border-color .2s
+}
+.row:hover{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.1)}
+.icon-wrap{
+  width:44px;
+  height:44px;
+  border-radius:10px;
+  overflow:hidden;
+  flex-shrink:0;
+  background:rgba(255,255,255,.04);
+  display:flex;
+  align-items:center;
+  justify-content:center
+}
+.icon-wrap img{width:100%;height:100%;object-fit:cover;display:block}
+.row-info{flex:1;min-width:0}
+.row-title{font-size:15px;font-weight:500;margin-bottom:2px}
+.row-sub{font-size:12px;color:var(--text-2)}
+.arrow{color:var(--text-2);font-size:18px;flex-shrink:0;opacity:.4}
+.status-dot{
+  width:6px;height:6px;border-radius:50%;
+  display:inline-block;margin-right:6px
+}
+.status-dot.online{background:#34c759}
+.status-dot.offline{background:#555}
+.status-text{font-size:12px;color:var(--text-2)}
+.status-row{display:flex;align-items:center;justify-content:center;gap:4px;margin-bottom:24px}
+.placeholder-pulse{
+  width:100%;height:100%;
+  background:linear-gradient(90deg,rgba(255,255,255,.04) 25%,rgba(255,255,255,.08) 50%,rgba(255,255,255,.04) 75%);
+  background-size:200% 100%;
+  animation:pulse 1.5s ease-in-out infinite
+}
+@keyframes pulse{
+  0%{background-position:200% 0}
+  100%{background-position:-200% 0}
+}
+.server-icon{width:44px;height:44px;border-radius:10px;object-fit:cover;display:block}
+</style>
+</head>
+<body>
+
+<canvas id="bgCanvas"></canvas>
+
+<div class="card">
+  <div class="avatar-wrap" id="tgAvatarWrap">
+    <div class="placeholder-pulse"></div>
+  </div>
+  <div class="name">@fuck_up1337</div>
+  <div class="tag">telegram</div>
+  <div class="status-row">
+    <span class="status-dot online"></span>
+    <span class="status-text">online</span>
+  </div>
+  <a class="row" href="https://t.me/fuck_up1337" target="_blank" rel="noopener">
+    <div class="icon-wrap" id="tgRowIcon">
+      <div class="placeholder-pulse"></div>
+    </div>
+    <div class="row-info">
+      <div class="row-title">Telegram</div>
+      <div class="row-sub">@fuck_up1337</div>
+    </div>
+    <span class="arrow">→</span>
+  </a>
+  <div class="divider"></div>
+  <div class="section-title">discord server</div>
+  <a class="row" href="https://discord.gg/6Gm47ATWB" target="_blank" rel="noopener" id="discordRow">
+    <div class="icon-wrap" id="discordIconWrap">
+      <div class="placeholder-pulse"></div>
+    </div>
+    <div class="row-info">
+      <div class="row-title" id="serverName">VINX</div>
+      <div class="row-sub" id="serverInfo">discord.gg/6Gm47ATWB</div>
+    </div>
+    <span class="arrow">→</span>
+  </a>
+  <div class="divider"></div>
+  <div class="section-title">projects</div>
+  <a class="row" href="https://awesome.mp3.guru" target="_blank" rel="noopener">
+    <div class="icon-wrap" style="background:#000;border:1px solid rgba(255,255,255,.08)">
+      <span style="font-size:22px;font-weight:700;color:#fff;line-height:1">W</span>
+    </div>
+    <div class="row-info">
+      <div class="row-title">awesome.mp3.guru</div>
+      <div class="row-sub">avesomai</div>
+    </div>
+    <span class="arrow">→</span>
+  </a>
+</div>
+
+<script>
+// --- 3D Constellation Effect ---
+const canvas = document.getElementById('bgCanvas');
+const ctx = canvas.getContext('2d');
+let W, H;
+let mouse = { x: 0, y: 0, ox: 0, oy: 0 };
+
+function resize() {
+  W = canvas.width = window.innerWidth;
+  H = canvas.height = window.innerHeight;
+}
+window.addEventListener('resize', resize);
+resize();
+
+const STAR_COUNT = 180;
+const CONNECTION_DIST = 130;
+const MOUSE_INFLUENCE = 60;
+
+const stars = Array.from({ length: STAR_COUNT }, () => ({
+  x: (Math.random() - 0.5) * W * 1.5,
+  y: (Math.random() - 0.5) * H * 1.5,
+  z: Math.random() * 600 + 100,
+  size: Math.random() * 2 + 0.5,
+  baseX: 0, baseY: 0,
+}));
+stars.forEach(s => { s.baseX = s.x; s.baseY = s.y; });
+
+const centerX = () => W / 2;
+const centerY = () => H / 2;
+
+function project(s) {
+  const fov = 800;
+  const scale = fov / (fov + s.z);
+  return {
+    sx: centerX() + s.x * scale,
+    sy: centerY() + s.y * scale,
+    scale,
+  };
+}
+
+let time = 0;
+
+function drawStars() {
+  ctx.clearRect(0, 0, W, H);
+  time += 0.002;
+
+  const mx = mouse.x || centerX();
+  const my = mouse.y || centerY();
+  const dx = mx - centerX();
+  const dy = my - centerY();
+
+  const projected = stars.map(s => {
+    const rx = s.baseX + dx * 0.15;
+    const ry = s.baseY + dy * 0.15;
+    const dz = Math.sin(time + s.baseX * 0.001 + s.baseY * 0.001) * 30
+      + (Math.hypot(s.baseX - dx, s.baseY - dy) < MOUSE_INFLUENCE * 3 ? -40 : 0);
+    s.x += (rx - s.x) * 0.03;
+    s.y += (ry - s.y) * 0.03;
+    s.z += (s.z + dz - s.z) * 0.03;
+    const p = project(s);
+    const distToMouse = Math.hypot(p.sx - mx, p.sy - my);
+    if (distToMouse < MOUSE_INFLUENCE) {
+      const force = (1 - distToMouse / MOUSE_INFLUENCE) * 0.5;
+      p.sx += (p.sx - mx) * force;
+      p.sy += (p.sy - my) * force;
+    }
+    return { s, p };
+  });
+
+  const pairs = [];
+  for (let i = 0; i < projected.length; i++) {
+    for (let j = i + 1; j < projected.length; j++) {
+      const a = projected[i].p, b = projected[j].p;
+      const d = Math.hypot(a.sx - b.sx, a.sy - b.sy);
+      if (d < CONNECTION_DIST && a.scale > 0.15 && b.scale > 0.15) {
+        pairs.push({ i, j, d });
+      }
+    }
+  }
+
+  ctx.strokeStyle = 'rgba(255,255,255,0.04)';
+  ctx.lineWidth = 0.5;
+  for (const { i, j, d } of pairs) {
+    const a = projected[i].p, b = projected[j].p;
+    const alpha = (1 - d / CONNECTION_DIST) * 0.3 * Math.min(a.scale, b.scale);
+    ctx.strokeStyle = `rgba(255,255,255,${alpha})`;
+    ctx.beginPath();
+    ctx.moveTo(a.sx, a.sy);
+    ctx.lineTo(b.sx, b.sy);
+    ctx.stroke();
+  }
+
+  for (const { s, p } of projected) {
+    const alpha = Math.min(1, p.scale * 1.2);
+    ctx.fillStyle = `rgba(255,255,255,${alpha * 0.7})`;
+    ctx.beginPath();
+    ctx.arc(p.sx, p.sy, s.size * p.scale, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  requestAnimationFrame(drawStars);
+}
+
+document.addEventListener('mousemove', e => {
+  mouse.x = e.clientX;
+  mouse.y = e.clientY;
+});
+document.addEventListener('mouseleave', () => {
+  mouse.x = centerX();
+  mouse.y = centerY();
+});
+
+drawStars();
+
+// --- Data Fetching ---
+async function fetchDiscordServer() {
+  try {
+    const res = await fetch('https://discord.com/api/v10/invites/6Gm47ATWB?with_counts=true');
+    const data = await res.json();
+    const guild = data.guild;
+    if (guild && guild.icon) {
+      const iconUrl = `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.webp?size=128`;
+      document.getElementById('discordIconWrap').innerHTML = `<img src="${iconUrl}" alt="${guild.name}" class="server-icon"/>`;
+    }
+    if (guild && guild.name) {
+      document.getElementById('serverName').textContent = guild.name;
+    }
+    if (data.approximate_member_count) {
+      document.getElementById('serverInfo').textContent = `${data.approximate_member_count} members · discord.gg/6Gm47ATWB`;
+    }
+  } catch (e) {
+    console.warn('Failed to fetch Discord server info:', e);
+    document.getElementById('discordIconWrap').innerHTML = `
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="#5865F2">
+        <path d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.095 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.095 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
+      </svg>`;
+  }
+}
+
+const avatarFile = 'photo_2026-06-29_05-55-14.jpg';
+
+function setAvatar(url) {
+  const img = `<img src="${url}" alt="avatar"/>`;
+  document.getElementById('tgAvatarWrap').innerHTML = img;
+  document.getElementById('tgRowIcon').innerHTML = img;
+}
+
+setAvatar(avatarFile);
+
+fetchDiscordServer();
+</script>
+
+</body>
+</html>
